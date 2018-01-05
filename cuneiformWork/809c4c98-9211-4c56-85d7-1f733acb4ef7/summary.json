@@ -1,0 +1,1 @@
+{"data":{"act_script":"undefined","app_line":172,"id":"60222E8CD750A0AF849D5B469404F439C60D810A2BF6BD52CDC8B45F1DB0B5A5D6357F9EAB2C4A2C7FD7F351262620BD5C5E59B8D7E4185DDF0EA22317C0CE06","lam_name":"gunzip","output":"Pre-condition not met: \/opt\/data\/kgenomes\/SRR359188_2.filt.fastq.gz"},"msg_type":"reply_error","protocol":"cf_protcl","vsn":"0.1.0"}

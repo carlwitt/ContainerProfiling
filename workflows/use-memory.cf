@@ -1,0 +1,27 @@
+%
+% Memory Profiling Test Workflow
+% Author: Carl Witt (cpw@posteo.de)
+%
+
+% useMemory
+% allocates memory (1GB, 1.5GB, 0.5GB, 1.3GB) over some seconds.
+% writes empty data into an in-memory file system to occupy known amounts of RAM, works precisely.
+%
+deftask useMemory( out : person )in bash *{
+  sleep 1s
+  mkdir /memreadtest
+  head -6 /proc/meminfo
+  mount -t tmpfs -o size=12000M tmpfs /memreadtest/
+  # fast generate 1GB of empty data into in-memory file system
+  dd if=/dev/zero of=/memreadtest/zero bs=1M count=1000
+  sleep 2s
+  dd if=/dev/zero of=/memreadtest/one bs=1M count=500
+  sleep 2s
+  rm /memreadtest/zero
+  sleep 2s
+  dd if=/dev/zero of=/memreadtest/two bs=1M count=800
+  sleep 1s
+  out="Hello $person"
+}*
+
+greet0 = useMemory( person: "Zar" "Peter" );metaGreet = useMemory( person: greet0);metaGreet;
